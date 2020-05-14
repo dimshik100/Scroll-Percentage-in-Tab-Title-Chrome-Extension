@@ -7,7 +7,15 @@ Chrome extension that updates the page title with the scrolled percentage of the
 TODO: Add link from google chrome store
 
 
+### Demo Video
+
+[![Scroll Percentage in Tab Title Chrome Extension](./assets/youtube screenshot.png)](https://www.youtube.com/watch?v=4x18QXkK5Ko "Scroll Percentage in Tab Title Chrome Extension")
+
 ### Screenshots
+
+<img src="./assets/screenshot 1.png" alt="Scroll Percentage in Tab Title Chrome Extension screenshot" width="500"/>
+<img src="./assets/screenshot 2.png" alt="Scroll Percentage in Tab Title Chrome Extension screenshot" width="500"/>
+
 
 ## For developers
 
@@ -33,12 +41,15 @@ your browser.
     3. Click the LOAD UNPACKED button and select the extension directory (dist folder).
 ![alt text](https://developer.chrome.com/static/images/get_started/load_extension.png)
 
-    1. Ta-da! The extension has been successfully installed.
+    4. Ta-da! The extension has been successfully installed.
 
-
-* Load `medium.com` in your browser and open the developer console.
+* Load `medium.com` or `dev.to` in your browser and open the developer console.
 
 You should be greeted by a message saying the following
+
+```
+Scroll Percentage in Tab Title Extension loaded 👍
+```
 
 If that works, you should now be ready to customize the
 extension-code. Do this by editing `extension.js`.
