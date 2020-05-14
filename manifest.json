@@ -28,7 +28,8 @@
   "content_scripts": [
     {
       "matches": [
-        "*://medium.com/*"
+        "*://medium.com/*",
+        "*://dev.to/*"
       ],
       "js": [
         "extensionInjector.js"

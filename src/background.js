@@ -3,6 +3,9 @@ const rule2 = {
   conditions: [
     new chrome.declarativeContent.PageStateMatcher({
       pageUrl: { urlContains: 'medium.com' },
+    }),
+    new chrome.declarativeContent.PageStateMatcher({
+      pageUrl: { urlContains: 'dev.to' },
     })
   ],
   // And shows the extension's page action.
