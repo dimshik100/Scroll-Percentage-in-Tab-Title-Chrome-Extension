@@ -12,9 +12,8 @@ TODO: Add link from google chrome store
 
 ### Screenshots
 
-<img src="./assets/screenshot 1.png" alt="Scroll Percentage in Tab Title Chrome Extension screenshot" width="500"/>
-<img src="./assets/screenshot 2.png" alt="Scroll Percentage in Tab Title Chrome Extension screenshot" width="500"/>
-
+<img src="./assets/screenshot 1.png" alt="Scroll Percentage in Tab Title Chrome Extension screenshot" />
+<img src="./assets/screenshot 2.png" alt="Scroll Percentage in Tab Title Chrome Extension screenshot" />
 
 ## For developers
 
