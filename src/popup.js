@@ -48,18 +48,25 @@ async function addUrl(event) {
 
   // get latest data from storage
   let data = await getStorageData(storageKey);
-  console.log("addUrl -> data", data)
-  
+  // console.log("addUrl -> data", data);
+
   const urls = data[storageKey];
 
+  // create a local anchor element to leverage javascript location API
+  const link = document.createElement("a");
+  link.href = url;
+  const cleanUrl = removeUselessWords(link.origin);
+
   // make sure we don't have this url already in the list
-  if (urls.includes(url)) {
-    return;  
+  if (urls.includes(cleanUrl)) {
+    // clear input value
+    urlInput.value = "";
+    return;
   }
 
-  urls.push(url);
+  urls.push(cleanUrl);
 
-  await setStorageData({ scrollPercentageUrls: urls })
+  await setStorageData({ scrollPercentageUrls: urls });
 
   // clear input value
   urlInput.value = "";
@@ -67,18 +74,27 @@ async function addUrl(event) {
   refreshUrls();
 }
 
+function removeUselessWords(str) {
+  var uselessWordsArray = ["http://", "https://", "www."];
+
+  var expStr = uselessWordsArray.join("|");
+  return str
+    .replace(new RegExp("\\b(" + expStr + ")\\b", "gi"), "")
+    .replace(/\s{2,}/g, "");
+}
+
 async function removeUrl(url) {
-   // get latest data from storage
-   let data = await getStorageData(storageKey);
-   console.log("removeUrl -> data", data)
-   
-   const currentUrls = data[storageKey];
+  // get latest data from storage
+  let data = await getStorageData(storageKey);
+  // console.log("removeUrl -> data", data);
 
-   const urls  = currentUrls.filter(e => e !== url);
+  const currentUrls = data[storageKey];
 
-   await setStorageData({ scrollPercentageUrls: urls })
+  const urls = currentUrls.filter((e) => e !== url);
 
-   refreshUrls();
+  await setStorageData({ scrollPercentageUrls: urls });
+
+  refreshUrls();
 }
 
 async function refreshUrls() {
@@ -90,11 +106,11 @@ async function refreshUrls() {
   // if there is no urls in storage, set some default urls
   if (!data[storageKey]) {
     console.log("refreshUrls -> Setting defaultUrls");
-    await setStorageData({ scrollPercentageUrls: defaultUrls })
+    await setStorageData({ scrollPercentageUrls: defaultUrls });
     data = await getStorageData(storageKey);
   }
 
-  console.log("refreshUrls -> data", data)
+  console.log("refreshUrls -> data", data);
   const urls = data[storageKey];
 
   for (const url of urls) {
@@ -112,7 +128,7 @@ async function resetStorage() {
 form.addEventListener("submit", addUrl, true);
 resetStorageBtn.addEventListener("click", resetStorage);
 
-urlsList.addEventListener("click", (event)=>{
+urlsList.addEventListener("click", (event) => {
   let target = event.target;
 
   if (!target.classList.contains("delete-btn")) {
