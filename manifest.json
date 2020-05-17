@@ -4,7 +4,7 @@
   "short_name": "ScrollPercentageInTabTitle",
   "version": "1.0",
   "author": "Dima Vishnevetsky <dimshik100@gmail.com>",
-  "description": "Chrome extension that updates the page title with the scrolled percentage of the page. Best for blogs and articles. Always see your reading progress, how much you have read and how much is left.",
+  "description": "See scrolled percentage on page tab. Always see your blog or article reading progress, how much you have read and how much is left.",
   "browser_action": {
     "default_icon": {
       "16": "icons/icon_extension_toolbar_16.png",
@@ -41,7 +41,6 @@
     "extension.js"   
   ],
   "permissions": [
-    "declarativeContent",
     "storage",
     "tabs"
   ]

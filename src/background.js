@@ -18,31 +18,31 @@ let updatedUrls = [];
 //   chrome.declarativeContent.onPageChanged.addRules([rule]);
 // });
 
-function replaceRules(rule) {
-  // Replace all rules ...
-  chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-    // With a new rule ...
-    chrome.declarativeContent.onPageChanged.addRules([rule]);
-  });
-}
+// function replaceRules(rule) {
+//   // Replace all rules ...
+//   chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
+//     // With a new rule ...
+//     chrome.declarativeContent.onPageChanged.addRules([rule]);
+//   });
+// }
 
-function createShowPageActionRule(urls) {
-  const rule = {
-    // That fires when a page's URL contains a url
-    conditions: [],
-    // And shows the extension's page action.
-    actions: [new chrome.declarativeContent.ShowPageAction()],
-  };
+// function createShowPageActionRule(urls) {
+//   const rule = {
+//     // That fires when a page's URL contains a url
+//     conditions: [],
+//     // And shows the extension's page action.
+//     actions: [new chrome.declarativeContent.ShowPageAction()],
+//   };
 
-  for (const url of urls) {
-    const condition = new chrome.declarativeContent.PageStateMatcher({
-      pageUrl: { urlContains: url },
-    });
-    rule.conditions.push(condition);
-  }
+//   for (const url of urls) {
+//     const condition = new chrome.declarativeContent.PageStateMatcher({
+//       pageUrl: { urlContains: url },
+//     });
+//     rule.conditions.push(condition);
+//   }
 
-  return rule;
-}
+//   return rule;
+// }
 
 chrome.runtime.onInstalled.addListener(async function () {
   // replaceRules(createShowPageActionRule(defaultUrls));
