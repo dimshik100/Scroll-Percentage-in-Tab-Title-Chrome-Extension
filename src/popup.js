@@ -48,14 +48,11 @@ async function addUrl(event) {
 
   // get latest data from storage
   let data = await getStorageData(storageKey);
-  // console.log("addUrl -> data", data);
 
   const urls = data[storageKey];
 
-  // create a local anchor element to leverage javascript location API
-  const link = document.createElement("a");
-  link.href = url;
-  const cleanUrl = removeUselessWords(link.origin);
+
+  const cleanUrl = extractHostname(url);
 
   // make sure we don't have this url already in the list
   if (urls.includes(cleanUrl)) {
@@ -72,6 +69,17 @@ async function addUrl(event) {
   urlInput.value = "";
 
   refreshUrls();
+}
+
+function extractHostname(url) {
+  //find & remove protocol (http, ftp, etc.) and get hostname
+  let hostname = removeUselessWords(url);
+  //find & remove port number
+  hostname = hostname.split(':')[0];
+  //find & remove "?"
+  hostname = hostname.split('?')[0];
+
+  return hostname;
 }
 
 function removeUselessWords(str) {
