@@ -5,7 +5,7 @@
   "version": "1.0",
   "author": "Dima Vishnevetsky <dimshik100@gmail.com>",
   "description": "Chrome extension that updates the page title with the scrolled percentage of the page. Best for blogs and articles. Always see your reading progress, how much you have read and how much is left.",
-  "page_action": {
+  "browser_action": {
     "default_icon": {
       "16": "icons/icon_extension_toolbar_16.png",
       "32": "icons/icon_extension_toolbar_32.png"
@@ -28,8 +28,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://medium.com/*",
-        "*://dev.to/*"
+        "<all_urls>"
       ],
       "js": [
         "extensionInjector.js"
@@ -43,6 +42,7 @@
   ],
   "permissions": [
     "declarativeContent",
-    "storage"
+    "storage",
+    "tabs"
   ]
 }

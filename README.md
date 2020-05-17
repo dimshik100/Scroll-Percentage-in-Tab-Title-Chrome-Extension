@@ -54,6 +54,10 @@ extension-code. Do this by editing `extension.js`.
 
 Cheers!
 
-
 ## TODO
 
+- [x] Add the option to add/remove supported urls in popup
+
+- [x] Change toolbar icon to disabled/enabled in the active tab according to url
+
+- [ ] Highlight url in popup if matches current tab
