@@ -36,7 +36,6 @@ const clearStorageData = () =>
 refreshUrls();
 
 async function addUrl(event) {
-  console.log("submit -> event", event);
   event.preventDefault();
 
   const url = urlInput.value;
@@ -94,7 +93,6 @@ function removeUselessWords(str) {
 async function removeUrl(url) {
   // get latest data from storage
   let data = await getStorageData(storageKey);
-  // console.log("removeUrl -> data", data);
 
   const currentUrls = data[storageKey];
 
@@ -109,7 +107,6 @@ async function refreshUrls() {
   let urlListItemsHtml = "";
 
   let data = await getStorageData(storageKey);
-  console.log("refreshUrls -> data", data);
 
   // if there is no urls in storage, set some default urls
   if (!data[storageKey]) {
@@ -118,7 +115,6 @@ async function refreshUrls() {
     data = await getStorageData(storageKey);
   }
 
-  console.log("refreshUrls -> data", data);
   const urls = data[storageKey];
 
   for (const url of urls) {

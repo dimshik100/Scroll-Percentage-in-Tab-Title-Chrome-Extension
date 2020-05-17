@@ -20,7 +20,6 @@ const getStorageData = (key) =>
   async function checkIfUrlMatches() {
     const storageKey = "scrollPercentageUrls";
     let data = await getStorageData(storageKey);
-    console.log("checkIfUrlMatches -> data", data);
 
     const urls = data[storageKey];
 

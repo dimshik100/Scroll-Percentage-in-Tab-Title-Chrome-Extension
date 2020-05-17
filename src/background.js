@@ -19,7 +19,6 @@ let updatedUrls = [];
 // });
 
 function replaceRules(rule) {
-  // console.log("replaceRules -> rule", rule);
   // Replace all rules ...
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
     // With a new rule ...
@@ -28,11 +27,9 @@ function replaceRules(rule) {
 }
 
 function createShowPageActionRule(urls) {
-  // console.log("createShowPageActionRule -> urls", urls);
   const rule = {
     // That fires when a page's URL contains a url
-    conditions: [
-    ],
+    conditions: [],
     // And shows the extension's page action.
     actions: [new chrome.declarativeContent.ShowPageAction()],
   };
@@ -40,7 +37,7 @@ function createShowPageActionRule(urls) {
   for (const url of urls) {
     const condition = new chrome.declarativeContent.PageStateMatcher({
       pageUrl: { urlContains: url },
-    })
+    });
     rule.conditions.push(condition);
   }
 
@@ -50,30 +47,29 @@ function createShowPageActionRule(urls) {
 chrome.runtime.onInstalled.addListener(async function () {
   // replaceRules(createShowPageActionRule(defaultUrls));
 
-    // get latest data from storage
-    let data = await getStorageData(storageKey);
-    console.log("addUrl -> data", data)
-    
-    const urls = data[storageKey];
+  // get latest data from storage
+  let data = await getStorageData(storageKey);
 
-    if (!urls) {
-      return;
-    }
+  const urls = data[storageKey];
 
-    updatedUrls = urls;
+  if (!urls) {
+    return;
+  }
+
+  updatedUrls = urls;
 });
 
 chrome.storage.onChanged.addListener(function (changes, namespace) {
   for (const key in changes) {
     let storageChange = changes[key];
-    console.log(
-      'Storage key "%s" in namespace "%s" changed. ' +
-        'Old value was "%s", new value is "%s".',
-      key,
-      namespace,
-      storageChange.oldValue,
-      storageChange.newValue
-    );
+    // console.log(
+    //   'Storage key "%s" in namespace "%s" changed. ' +
+    //     'Old value was "%s", new value is "%s".',
+    //   key,
+    //   namespace,
+    //   storageChange.oldValue,
+    //   storageChange.newValue
+    // );
 
     if (key === storageKey) {
       updatedUrls = storageChange.newValue;
@@ -82,23 +78,21 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
   }
 });
 
-
 const updateIconState = (state, tabId) => {
   const icons = {
     enabled: {
       "16": "icons/icon_extension_toolbar_16.png",
-      "32": "icons/icon_extension_toolbar_32.png"
+      "32": "icons/icon_extension_toolbar_32.png",
     },
     disabled: {
       "16": "icons/disabled_icon_extension_toolbar_16.png",
-      "32": "icons/disabled_icon_extension_toolbar_32.png"
-    }
+      "32": "icons/disabled_icon_extension_toolbar_32.png",
+    },
   };
 
-  const icon = state === 'disabled' ? icons.disabled : icons.enabled;
+  const icon = state === "disabled" ? icons.disabled : icons.enabled;
   chrome.browserAction.setIcon({ tabId, path: icon });
 };
-
 
 const getStorageData = (key) =>
   new Promise((resolve, reject) =>
@@ -109,23 +103,19 @@ const getStorageData = (key) =>
     )
   );
 
+async function isCurrentUrlMatch() {}
 
+chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
+  if (tab && !tab.active) {
+    return;
+  }
 
-async function isCurrentUrlMatch() {
-
-}
-
-chrome.tabs.onUpdated.addListener(async function(tabId, changeInfo, tab) {
-    if (tab && !tab.active) {
+  for (const url of updatedUrls) {
+    if (tab.url.includes(url)) {
+      updateIconState("enabled", tabId);
       return;
     }
+  }
 
-    for (const url of updatedUrls) {
-      if (tab.url.includes(url)) {
-        updateIconState('enabled', tabId);
-        return;
-      }
-    }
-
-    updateIconState('disabled', tabId);
+  updateIconState("disabled", tabId);
 });
