@@ -118,7 +118,7 @@ async function refreshUrls() {
   const urls = data[storageKey];
 
   for (const url of urls) {
-    urlListItemsHtml += `<li>${url} <button class="delete-btn" data-url="${url}">Del</button></li>`;
+    urlListItemsHtml += `<li>${url} <button class="delete-btn" data-url="${url}">&times;</button></li>`;
   }
 
   urlsList.innerHTML = urlListItemsHtml;
@@ -130,7 +130,7 @@ async function resetStorage() {
 }
 
 form.addEventListener("submit", addUrl, true);
-resetStorageBtn.addEventListener("click", resetStorage);
+// resetStorageBtn.addEventListener("click", resetStorage);
 
 urlsList.addEventListener("click", (event) => {
   let target = event.target;
