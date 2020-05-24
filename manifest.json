@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Scroll Percentage in Tab Title Extension",
   "short_name": "ScrollPercentageInTabTitle",
-  "version": "1.0",
+  "version": "0.2",
   "author": "Dima Vishnevetsky <dimshik100@gmail.com>",
   "description": "See scrolled percentage on page tab. Always see your blog or article reading progress, how much you have read and how much is left.",
   "browser_action": {
