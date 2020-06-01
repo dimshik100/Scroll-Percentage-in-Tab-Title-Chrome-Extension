@@ -4,7 +4,8 @@
 Chrome extension that updates the page title with the scrolled percentage of the page. Best for blogs and articles. Always see your reading progress, how much you have read and how much is left.
 
 ## Try it
-TODO: Add link from google chrome store
+
+[Scroll Percentage in Tab Title Extension](https://chrome.google.com/webstore/detail/scroll-percentage-in-tab/fbohjeijkanpeamijojloonklakpncef)
 
 ### Demo Video
 
@@ -19,11 +20,15 @@ TODO: Add link from google chrome store
 
 First get the code and build it:
 
-```
-# get the code
-`git clone https://github.com/dimshik100/Scroll-Percentage-in-Tab-Title-Chrome-Extension`
+### get the code
 
-# get dependencies and build
+``` shell
+git clone https://github.com/dimshik100/Scroll-Percentage-in-Tab-Title-Chrome-Extension
+```
+
+### get dependencies and build
+
+``` shell
 npm install
 npm run build
 ```
@@ -45,7 +50,7 @@ your browser.
 
 You should be greeted by a message saying the following
 
-```
+``` shell
 Scroll Percentage in Tab Title Extension loaded 👍
 ```
 
@@ -56,8 +61,10 @@ Cheers!
 
 ## TODO
 
-- [x] Add the option to add/remove supported urls in popup
+* [x] Add the option to add/remove supported urls in popup
 
-- [x] Change toolbar icon to disabled/enabled in the active tab according to url
+* [x] Change toolbar icon to disabled/enabled in the active tab according to url
 
-- [ ] Highlight url in popup if matches current tab
+* [ ] Highlight url in popup if matches current tab
+
+* [ ] Improve design in popup
