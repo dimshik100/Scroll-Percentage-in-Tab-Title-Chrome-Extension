@@ -11,4 +11,4 @@ window.addEventListener("scroll", () => {
   let scrollPercent = scrollTop / (docHeight - winHeight);
   let scrollPercentRounded = Math.round(scrollPercent * 100);
   document.title = `(${scrollPercentRounded}%) ${originalTitle}`;
-});
+}, { passive: true });
