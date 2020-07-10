@@ -41,7 +41,6 @@ startIfNedded().then((settings) => {
 
   function findOutMainContentElement(settings) {
     if (settings.advanced.calcMethod === "page") {
-      console.log("page");
       return {
         ratio: 1,
         elm: document.body,
