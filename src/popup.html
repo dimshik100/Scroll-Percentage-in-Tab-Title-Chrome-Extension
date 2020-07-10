@@ -11,6 +11,32 @@
       button {
         cursor: pointer;
       }
+      fieldset,
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      #urlsList {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      #urlsList li {
+        margin: 5px 0;
+      }
+      #urlsList li button {
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      #urlsList li:hover button {
+        opacity: 1;
+      }
+      #advancedSettings summary {
+        cursor: pointer;
+      }
+      #advancedSettings summary:focus {
+        outline: none;
+      }
     </style>
   </head>
 
@@ -22,19 +48,28 @@
       progress, how much you have read and how much is left.
     </p>
 
+    <h2>Settings</h2>
     <div>
-      <h2>Supported websites</h2>
-      <ul id="urlsList"></ul>
       <form id="addUrlForm">
-        <input type="url" id="url" placeholder="Enter website url" required />
-        <a href="#" id="useCurrentUrl">(Current Website)</a>
-        <br />
-        <input type="submit" value="Add to list" />
+        <fieldset>
+          <legend>Supported websites</legend>
+          <ul id="urlsList"></ul>
+          <label>
+            <input
+              type="url"
+              id="url"
+              placeholder="Enter website url"
+              required
+            />
+            <a href="#" id="useCurrentUrl">(Current Website)</a>
+          </label>
+          <input type="submit" value="Add to list" />
+        </fieldset>
       </form>
     </div>
 
-    <div>
-      <h2>More Settings</h2>
+    <details id="advancedSettings">
+      <summary>Advanced</summary>
       <form id="settingsForm">
         <fieldset>
           <legend>Page length calculate method</legend>
@@ -42,14 +77,14 @@
             <input type="radio" name="calcMethod" value="fullPage" />
             Full page.
           </label>
-          <br />
           <label>
             <input type="radio" name="calcMethod" value="fullPage" />
             Content only (Main text block).
           </label>
         </fieldset>
+        <input type="submit" value="Save Settings" />
       </form>
-    </div>
+    </details>
 
     <!-- <button id="resetStorage">Reset urls</button> -->
 

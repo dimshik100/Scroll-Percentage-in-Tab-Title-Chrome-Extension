@@ -3,6 +3,7 @@ const form = document.getElementById("addUrlForm");
 const urlInput = document.getElementById("url");
 const resetStorageBtn = document.getElementById("resetStorage");
 const useCurrentUrlBtn = document.getElementById("useCurrentUrl");
+const settingsForm = document.getElementById("settingsForm");
 
 refreshUrls();
 
@@ -78,7 +79,7 @@ async function refreshUrls() {
   }
 
   for (const url of data.urls) {
-    urlListItemsHtml += `<li>${url} <button class="delete-btn" data-url="${url}">&times;</button></li>`;
+    urlListItemsHtml += `<li><button class="delete-btn" data-url="${url}">&times;</button> ${url}</li>`;
   }
 
   urlsList.innerHTML = urlListItemsHtml;
