@@ -25,12 +25,27 @@
     <div>
       <h2>Supported websites</h2>
       <ul id="urlsList"></ul>
+      <form id="addUrlForm">
+        <input type="url" id="url" placeholder="Enter website url" required />
+        <input type="submit" value="Submit" />
+      </form>
     </div>
 
     <div>
-      <form id="addUrlForm">
-        <input type="text" id="url" placeholder="Enter website url" />
-        <input type="submit" value="Submit" />
+      <h2>More Settings</h2>
+      <form id="settingsForm">
+        <fieldset>
+          <legend>Page length calculate method</legend>
+          <label>
+            <input type="radio" name="calcMethod" value="fullPage" />
+            Full page.
+          </label>
+          <br />
+          <label>
+            <input type="radio" name="calcMethod" value="fullPage" />
+            Content only (Main text block).
+          </label>
+        </fieldset>
       </form>
     </div>
 
@@ -43,9 +58,14 @@
 
     <p>
       Want to contribute?
-      <a href="https://github.com/dimshik100/Scroll-Percentage-in-Tab-Title-Chrome-Extension" target="_blank">Github</a>
+      <a
+        href="https://github.com/dimshik100/Scroll-Percentage-in-Tab-Title-Chrome-Extension"
+        target="_blank"
+        >Github</a
+      >
     </p>
 
+    <script src="storage.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>
