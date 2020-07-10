@@ -1,6 +1,3 @@
-const storageKey = "scrollPercentageUrls";
-const defaultUrls = ["medium.com", "dev.to"];
-
 console.log("Hello from background.js");
 
 let updatedUrls = [];
@@ -48,33 +45,18 @@ chrome.runtime.onInstalled.addListener(async function () {
   // replaceRules(createShowPageActionRule(defaultUrls));
 
   // get latest data from storage
-  let data = await getStorageData(storageKey);
-
-  const urls = data[storageKey];
-
-  if (!urls) {
+  let data = await StorageManager.get(storageKey);
+  if (!data?.urls) {
     return;
   }
 
-  updatedUrls = urls;
+  updatedUrls = data.urls;
 });
 
 chrome.storage.onChanged.addListener(function (changes, namespace) {
-  for (const key in changes) {
-    let storageChange = changes[key];
-    // console.log(
-    //   'Storage key "%s" in namespace "%s" changed. ' +
-    //     'Old value was "%s", new value is "%s".',
-    //   key,
-    //   namespace,
-    //   storageChange.oldValue,
-    //   storageChange.newValue
-    // );
-
-    if (key === storageKey) {
-      updatedUrls = storageChange.newValue;
-      // replaceRules(createShowPageActionRule(storageChange.newValue));
-    }
+  if (changes?.urls) {
+    updatedUrls = changes.urls.newValue;
+    // replaceRules(createShowPageActionRule(storageChange.newValue));
   }
 });
 
@@ -93,15 +75,6 @@ const updateIconState = (state, tabId) => {
   const icon = state === "disabled" ? icons.disabled : icons.enabled;
   chrome.browserAction.setIcon({ tabId, path: icon });
 };
-
-const getStorageData = (key) =>
-  new Promise((resolve, reject) =>
-    chrome.storage.sync.get(key, (result) =>
-      chrome.runtime.lastError
-        ? reject(Error(chrome.runtime.lastError.message))
-        : resolve(result)
-    )
-  );
 
 async function isCurrentUrlMatch() {}
 
