@@ -2,6 +2,7 @@ const urlsList = document.getElementById("urlsList");
 const form = document.getElementById("addUrlForm");
 const urlInput = document.getElementById("url");
 const resetStorageBtn = document.getElementById("resetStorage");
+const useCurrentUrlBtn = document.getElementById("useCurrentUrl");
 
 refreshUrls();
 
@@ -99,4 +100,10 @@ urlsList.addEventListener("click", (event) => {
   }
 
   removeUrl(target.dataset.url);
+});
+
+useCurrentUrlBtn.addEventListener("click", async (event) => {
+  event.preventDefault();
+  const currentUrl = await getCurrentUrl();
+  urlInput.value = currentUrl.replace(/^(https?:\/\/.+?)\/.*$/gm, "$1");
 });
