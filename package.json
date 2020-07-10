@@ -7,7 +7,7 @@
     "watch-js": "watchify src/extension.js -o dist/extension.js -dv",
     "watch": "npm run watch-js",
     "build-js": "browserify src/extension.js > dist/extension.js",
-    "copy-files": "cpy manifest.json dist && cpy src/extensionInjector.js dist && cpy src/background.js dist && cpy icons/*.png dist/icons && cpy src/popup.html dist && cpy src/popup.js dist && cpy src/storage.js dist",
+    "copy-files": "cpy manifest.json dist && cpy icons/*.png dist/icons && cpy src/popup.html dist && cpy src/*.js dist",
     "deps": "npm install",
     "stage": "mkdir dist || echo Dist already exists.",
     "build": "npm run stage && npm run copy-files && npm run build-js"
