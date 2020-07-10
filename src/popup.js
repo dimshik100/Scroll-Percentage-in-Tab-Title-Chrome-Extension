@@ -5,7 +5,7 @@ const resetStorageBtn = document.getElementById("resetStorage");
 const useCurrentUrlBtn = document.getElementById("useCurrentUrl");
 const settingsForm = document.getElementById("settingsForm");
 
-refreshUrls();
+loadSettings();
 
 async function addUrl(event) {
   event.preventDefault();
@@ -108,3 +108,35 @@ useCurrentUrlBtn.addEventListener("click", async (event) => {
   const currentUrl = await getCurrentUrl();
   urlInput.value = currentUrl.replace(/^(https?:\/\/.+?)\/.*$/gm, "$1");
 });
+
+async function saveSettings(event) {
+  event.preventDefault();
+  const newSettings = formSerialize(this);
+
+  // get latest data from storage
+  const currentSettings = await StorageManager.get(storageKey);
+  currentSettings.advanced = newSettings;
+  await StorageManager.set(storageKey, currentSettings);
+}
+
+async function loadSettings() {
+  refreshUrls();
+
+  // get latest data from storage
+  const currentSettings = await StorageManager.get(storageKey);
+
+  Object.entries(currentSettings.advanced).forEach(([name, val]) => {
+    const settingControllers = settingsForm.querySelectorAll(`[name=${name}]`);
+    debugger;
+    if (!settingControllers) return;
+    settingControllers.forEach((settingController) => {
+      if (settingController?.value && settingController.value === val) {
+        settingController.checked = true;
+      } else if (!settingController?.value) {
+        settingController.value = val;
+      }
+    });
+  });
+}
+
+settingsForm.addEventListener("submit", saveSettings, true);

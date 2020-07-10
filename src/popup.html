@@ -68,17 +68,17 @@
       </form>
     </div>
 
-    <details id="advancedSettings">
+    <details id="advancedSettings" open>
       <summary>Advanced</summary>
       <form id="settingsForm">
         <fieldset>
           <legend>Page length calculate method</legend>
           <label>
-            <input type="radio" name="calcMethod" value="fullPage" />
+            <input type="radio" name="calcMethod" value="page" required />
             Full page.
           </label>
           <label>
-            <input type="radio" name="calcMethod" value="fullPage" />
+            <input type="radio" name="calcMethod" value="content" required />
             Content only (Main text block).
           </label>
         </fieldset>
