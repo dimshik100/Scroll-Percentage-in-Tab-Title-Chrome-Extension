@@ -7,3 +7,16 @@ function getCurrentUrl() {
     })
   );
 }
+
+function formSerialize(formElm) {
+  const elements = formElm.elements;
+  const obj = {};
+  for (let i = 0; i < elements.length; i++) {
+    const item = elements.item(i);
+    console.log(item.checked);
+    if (!item.name || !(item.checked ?? !item.checked)) continue;
+    obj[item.name] = item.value;
+  }
+
+  return obj;
+}
