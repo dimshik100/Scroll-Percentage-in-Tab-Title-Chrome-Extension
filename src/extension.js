@@ -7,7 +7,7 @@ const originalTitle = document.title;
 window.addEventListener(
   "scroll",
   () => {
-    const windowHeight = document.body.offsetHeight;
+    const windowHeight = window.innerHeight;
     const scrollTop = window.scrollY;
     const containers = document.querySelectorAll(
       "body,main,*[class~='content'],*[class*='Content'],*[class~='article']:first-child,article:first-child"
@@ -24,11 +24,10 @@ window.addEventListener(
       }
     }
 
-    let docHeight =
+    const docHeight =
       scrollTop + mainContainerSizes.top + mainContainerSizes.height;
-    let winHeight = window.innerHeight;
-    let scrollPercent = scrollTop / (docHeight - winHeight);
-    let scrollPercentRounded = Math.min(
+    const scrollPercent = scrollTop / (docHeight - windowHeight);
+    const scrollPercentRounded = Math.min(
       Math.max(Math.round(scrollPercent * 100), 0),
       100
     );
