@@ -124,20 +124,22 @@ async function loadSettings() {
   // get latest data from storage
   const currentSettings = await StorageManager.get(storageKey);
 
-  Object.entries(currentSettings.advanced).forEach(([name, val]) => {
-    const settingControllers = settingsForm.querySelectorAll(`[name=${name}]`);
-    debugger;
-    if (!settingControllers) return;
-    settingControllers.forEach((settingController) => {
-      if (settingController?.value && settingController.value === val) {
-        settingController.checked = true;
-      } else if (settingController?.value) {
-        settingController.checked = false;
-      } else {
-        settingController.value = val;
-      }
+  currentSettings.advanced &&
+    Object.entries(currentSettings.advanced).forEach(([name, val]) => {
+      const settingControllers = settingsForm.querySelectorAll(
+        `[name=${name}]`
+      );
+      if (!settingControllers) return;
+      settingControllers.forEach((settingController) => {
+        if (settingController?.value && settingController.value === val) {
+          settingController.checked = true;
+        } else if (settingController?.value) {
+          settingController.checked = false;
+        } else {
+          settingController.value = val;
+        }
+      });
     });
-  });
 }
 
 settingsForm.addEventListener("submit", saveSettings, true);
