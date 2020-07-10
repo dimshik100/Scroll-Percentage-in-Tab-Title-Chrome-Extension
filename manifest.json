@@ -26,11 +26,11 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["storage.js", "helpers.js", "extensionInjector.js"],
+      "js": ["storage.js", "helpers.js", "extension.js"],
       "css": [],
       "run_at": "document_end"
     }
   ],
-  "web_accessible_resources": ["extension.js"],
+  "web_accessible_resources": [],
   "permissions": ["storage", "tabs"]
 }

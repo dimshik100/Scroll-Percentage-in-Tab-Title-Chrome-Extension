@@ -6,6 +6,7 @@ const useCurrentUrlBtn = document.getElementById("useCurrentUrl");
 const settingsForm = document.getElementById("settingsForm");
 
 loadSettings();
+refreshUrls();
 
 async function addUrl(event) {
   event.preventDefault();
@@ -120,8 +121,6 @@ async function saveSettings(event) {
 }
 
 async function loadSettings() {
-  refreshUrls();
-
   // get latest data from storage
   const currentSettings = await StorageManager.get(storageKey);
 
@@ -132,7 +131,9 @@ async function loadSettings() {
     settingControllers.forEach((settingController) => {
       if (settingController?.value && settingController.value === val) {
         settingController.checked = true;
-      } else if (!settingController?.value) {
+      } else if (settingController?.value) {
+        settingController.checked = false;
+      } else {
         settingController.value = val;
       }
     });
