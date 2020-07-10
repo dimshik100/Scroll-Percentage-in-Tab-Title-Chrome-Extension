@@ -20,13 +20,13 @@
     "128": "icons/icon_web_store_icon_128.png"
   },
   "background": {
-    "scripts": ["storage.js", "background.js"],
+    "scripts": ["storage.js", "helpers.js", "background.js"],
     "persistent": false
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["storage.js", "extensionInjector.js"],
+      "js": ["storage.js", "helpers.js", "extensionInjector.js"],
       "css": [],
       "run_at": "document_end"
     }
