@@ -20,28 +20,17 @@
     "128": "icons/icon_web_store_icon_128.png"
   },
   "background": {
-    "scripts": [
-      "background.js"
-    ],
+    "scripts": ["storage.js", "background.js"],
     "persistent": false
   },
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "extensionInjector.js"
-      ],
+      "matches": ["<all_urls>"],
+      "js": ["storage.js", "helpers.js", "extension.js"],
       "css": [],
       "run_at": "document_end"
     }
   ],
-  "web_accessible_resources": [
-    "extension.js"   
-  ],
-  "permissions": [
-    "storage",
-    "tabs"
-  ]
+  "web_accessible_resources": [],
+  "permissions": ["storage", "tabs"]
 }

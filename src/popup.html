@@ -11,6 +11,32 @@
       button {
         cursor: pointer;
       }
+      fieldset,
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      #urlsList {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      #urlsList li {
+        margin: 5px 0;
+      }
+      #urlsList li button {
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      #urlsList li:hover button {
+        opacity: 1;
+      }
+      #advancedSettings summary {
+        cursor: pointer;
+      }
+      #advancedSettings summary:focus {
+        outline: none;
+      }
     </style>
   </head>
 
@@ -22,17 +48,49 @@
       progress, how much you have read and how much is left.
     </p>
 
-    <div>
-      <h2>Supported websites</h2>
-      <ul id="urlsList"></ul>
-    </div>
-
+    <h2>Settings</h2>
     <div>
       <form id="addUrlForm">
-        <input type="text" id="url" placeholder="Enter website url" />
-        <input type="submit" value="Submit" />
+        <fieldset>
+          <legend>Supported websites</legend>
+          <ul id="urlsList"></ul>
+          <label>
+            <input
+              type="url"
+              id="url"
+              placeholder="Enter website url"
+              required
+            />
+            <a href="#" id="useCurrentUrl">(Current Website)</a>
+          </label>
+          <input type="submit" value="Add to list" />
+        </fieldset>
       </form>
     </div>
+
+    <details id="advancedSettings" open>
+      <summary>Advanced</summary>
+      <form id="settingsForm">
+        <fieldset>
+          <legend>Page length calculate method</legend>
+          <label>
+            <input type="radio" name="calcMethod" value="page" required />
+            Full page.
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="calcMethod"
+              value="content"
+              required
+              checked
+            />
+            Content only (Main text block).
+          </label>
+        </fieldset>
+        <input type="submit" value="Save Settings" />
+      </form>
+    </details>
 
     <!-- <button id="resetStorage">Reset urls</button> -->
 
@@ -43,9 +101,15 @@
 
     <p>
       Want to contribute?
-      <a href="https://github.com/dimshik100/Scroll-Percentage-in-Tab-Title-Chrome-Extension" target="_blank">Github</a>
+      <a
+        href="https://github.com/dimshik100/Scroll-Percentage-in-Tab-Title-Chrome-Extension"
+        target="_blank"
+        >Github</a
+      >
     </p>
 
+    <script src="storage.js"></script>
+    <script src="helpers.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>
