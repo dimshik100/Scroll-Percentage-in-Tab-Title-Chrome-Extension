@@ -19,3 +19,28 @@ function formSerialize(formElm) {
 
   return obj;
 }
+
+function extractHostname(url, removeProtocol = true) {
+  //find & remove protocol (http, ftp, etc.) and get hostname
+  let hostname = removeUselessWords(url, removeProtocol);
+  if (removeProtocol) {
+    //find & remove port number
+    hostname = hostname.split(":")[0];
+  }
+  //find & remove "?"
+  hostname = hostname.split("?")[0];
+  // remove last slash
+  hostname = hostname.replace(/\/$/g, "");
+
+  return hostname;
+}
+
+function removeUselessWords(str, removeProtocol = true) {
+  const uselessWordsArray = ["www."];
+  removeProtocol && uselessWordsArray.push("http://", "https://", "ftp://");
+  const expStr = uselessWordsArray.join("|");
+
+  return str
+    .replace(new RegExp("\\b(" + expStr + ")\\b", "gi"), "")
+    .replace(/\s{2,}/g, "");
+}

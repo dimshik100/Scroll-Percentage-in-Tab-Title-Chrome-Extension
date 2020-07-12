@@ -20,7 +20,7 @@
     "128": "icons/icon_web_store_icon_128.png"
   },
   "background": {
-    "scripts": ["storage.js", "helpers.js", "background.js"],
+    "scripts": ["storage.js", "background.js"],
     "persistent": false
   },
   "content_scripts": [
